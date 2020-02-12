@@ -3,18 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Forms</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://themwebs.me/demos/html_css/forms/css/normalize.css" />
-    <link rel="stylesheet" href="https://themwebs.me/demos/html_css/forms/css/styles.css" />
+    <title>api, querystring</title>
   </head>
   <body>
+    <h1>hello world</h1>
+    &page=${pageNumber}&page_size=26
 
-<div class="wrapper"></div>
-<script src="/week_4/exercise_2/ben-script.js"></script> 
- </body>
+
+    `?genre=${genre}`
+    <div class="wrapper">
+      <form method="GET">
+        <div>Genre</div>
+        <input type="text" id="genre" name="genre" />
+        <div>page Number</div>
+        <input type="text" id="pageNumber" name="pageNumber" />
+        <div>page Size</div>
+        <input type="text" id="pageSize" name="pageSize" />
+        <input type="submit" value="SUBMIT" />
+      </form>
+    </div>
+    <script src="/week_4/exercise_2/ben-script.js"></script>
+  </body>
 </html>
-

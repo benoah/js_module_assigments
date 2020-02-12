@@ -1,9 +1,34 @@
 const apiUrl = "https://pokeapi.co/api/v2/pokemon/ditto/";
 const apiUrl2 = "https://randomuser.me/api/";
-
+const apiUrl3 = "https://api.rawg.io/api/games";
 const wrapperDiv = document.querySelector(".wrapper");
 
-fetch(apiUrl2)
+let pageNumber = 2;
+let pageSize = 26;
+
+let genre = "";
+const queryString = document.location.search;
+// we make template litteral
+const combinedApiUrl = `${apiUrl3}${queryString}`; // backticks is option and the button on the right top
+let giveMeQueryString = new URLSearchParams(queryString);
+
+console.log("a", giveMeQueryString.has("genre"));
+console.log("b", giveMeQueryString.get("genre"))
+
+
+
+
+
+if (giveMeQueryString.get("genre") !== true) {
+  genre = giveMeQueryString.get("genre");
+  console.log(genre);
+}
+
+let newUrl = `${apiUrl3}${genre}`;
+
+
+
+fetch(combinedApiUrl)
   .then(function(response) {
     if (response.status === 200) {
       return response.json();
@@ -12,10 +37,11 @@ fetch(apiUrl2)
     }
   })
   .then(function(json) {
-    const results = json.results;
+    const results = json;
+     console.log (results);
     // pass in results array into function as an argument
-    getName(results);
-    getImage(results);
+    // getName(results);
+    // getImage(results);
   })
   .catch(function(error) {
     console.log(error);
@@ -31,12 +57,12 @@ function getName(resultArray) {
     let userFirstname = resultArray[i].name.first;
     let userLastname = resultArray[i].name.last;
 
-    returnHTML +=`${userFirstname} ${userLastname}`;
+    returnHTML += `${userFirstname} ${userLastname}`;
 
     let heading = document.createElement("h1");
 
     let addNameToFigure = wrapperDiv.appendChild(heading);
-    addNameToFigure.innerHTML = returnHTML; 
+    addNameToFigure.innerHTML = returnHTML;
   }
 }
 
@@ -45,13 +71,10 @@ function getImage(imageArray) {
     let returnHTML = "";
     let photo = imageArray[i].picture.large;
     console.log(photo);
-    returnHTML += `<img src="${photo}"/>`; 
+    returnHTML += `<img src="${photo}"/>`;
     let photoDiv = document.createElement("figure");
     let AddPhotoToDiv = wrapperDiv.appendChild(photoDiv);
 
-   AddPhotoToDiv .innerHTML = returnHTML;
+    AddPhotoToDiv.innerHTML = returnHTML;
   }
 }
-
-
-
